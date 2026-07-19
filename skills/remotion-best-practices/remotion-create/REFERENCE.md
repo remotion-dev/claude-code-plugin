@@ -25,11 +25,11 @@ Replace `my-video` with a suitable project name.
 
 ## Designing a video
 
-Keep the scaffold and add React Markup. Follow [Remotion React Markup Best Practices](../remotion-markup/SKILL.md) and [Video Layout Rules](video-layout.md) for video-first layout and text sizing guidance.
+Keep the scaffold and add React Markup. Follow [Remotion React Markup Best Practices](../remotion-markup/REFERENCE.md) and [Video Layout Rules](video-layout.md) for video-first layout and text sizing guidance.
 
 ## Interactivity Best Practices
 
-By structuring the React Markup following [Remotion Interactivity Best Practices](../remotion-interactivity/SKILL.md), you allow the user to make edits in the Studio which write back to code.
+By structuring the React Markup following [Remotion Interactivity Best Practices](../remotion-interactivity/REFERENCE.md), you allow the user to make edits in the Studio which write back to code.
 
 ## TailwindCSS
 
