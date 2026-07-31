@@ -1,6 +1,7 @@
 ---
 name: remotion-docs
 description: Search Remotion documentation
+version: 4.0.503
 metadata:
   tags: remotion, docs, documentation, search
 ---
