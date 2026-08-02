@@ -1,10 +1,12 @@
 ---
 name: remotion-best-practices
 description: Router for all Remotion skills
-version: 4.0.503
-metadata:
-  tags: remotion, video, react, animation, composition
+version: 4.0.504
 ---
+
+## Creating a video
+
+If the user asks to make, create, or build a new video or composition, load [Create a new Remotion video](./remotion-create/REFERENCE.md), whether or not a Remotion project already exists.
 
 ## New project setup
 
