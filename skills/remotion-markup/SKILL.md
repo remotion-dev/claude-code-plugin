@@ -5,7 +5,7 @@ version: 4.0.519
 ---
 
 This is guidance for writing Remotion React Markup.
-If this is not relevant, load [Remotion Best Practices](../remotion-best-practices/SKILL.md) instead.
+If this is not relevant, load Remotion Best Practices instead.
 
 ## Preserve user changes
 
@@ -21,7 +21,7 @@ Tailwind animation class will not render correctly, they need to be refactored.
 
 Use `Easing.bezier()` and `Easing.spring()` to customize timing.
 
-Structure your markup according to [Remotion Interactivity Best Practices](../remotion-interactivity/SKILL.md)
+Structure your markup according to Remotion Interactivity Best Practices
 
 ```tsx
 import { useCurrentFrame, Easing, interpolate, Interactive } from "remotion";
@@ -275,7 +275,7 @@ For static maps, animated routes and markers, geographic explainers, Mapbox, Map
 
 ## Captions
 
-When dealing with captions or subtitles, load the [Remotion Captions](../remotion-captions/SKILL.md) skill for more information.
+When dealing with captions or subtitles, load the Remotion Captions skill for more information.
 
 ## Google Fonts
 
