@@ -1,7 +1,7 @@
 ---
 name: remotion-markup
 description: Content, animation and effects best practices
-version: 4.0.528
+version: 4.0.529
 ---
 
 This is guidance for writing Remotion React Markup.
@@ -249,6 +249,10 @@ See [cropping.md](cropping.md) if needing to crop the visible rectangle of a com
 ## Transitions
 
 See [transitions.md](transitions.md) for scene transition patterns.
+
+## Motion blur
+
+When adding motion blur or a movement trail, read [motion-blur.md](motion-blur.md) for the preferred HTML-in-canvas approach, preview requirements, and alternatives.
 
 ## Visual and pixel effects
 
