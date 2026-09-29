@@ -1,7 +1,7 @@
 ---
 name: remotion-markup
 description: Content, animation and effects best practices
-version: 4.0.529
+version: 4.0.530
 ---
 
 This is guidance for writing Remotion React Markup.
@@ -22,6 +22,13 @@ Tailwind animation class will not render correctly, they need to be refactored.
 Use `Easing.bezier()` and `Easing.spring()` to customize timing.
 
 Structure your markup according to [Remotion Interactivity Best Practices](../remotion-interactivity/REFERENCE.md)
+
+The Studio edits the JSX source node that created an item. Author every
+composition registration, clip, scene, layer and sequence that should be
+editable independently as its own JSX node, with its editable props inline.
+Programmatic loops are suitable when the generated instances are intentionally
+controlled as one source template, not when users need to edit the instances
+separately.
 
 ```tsx
 import { useCurrentFrame, Easing, interpolate, Interactive } from "remotion";
@@ -109,6 +116,9 @@ export const MyComposition = () => {
   );
 };
 ```
+
+If the composition is primarily a timeline of video or audio clips, read
+[video-editing.md](video-editing.md) before choosing its source structure.
 
 ## Example scene
 
@@ -203,6 +213,29 @@ Useful for components whose internal clock should start later:
 <Sequence trimBefore={10 * fps} {/* ... */} />
 ```
 
+### `trimAfter`
+
+Ends the internal clock at a frame. Measured in the same clock as `trimBefore`, so the layer lasts `(trimAfter - trimBefore) / playbackRate` frames in the timeline unless `durationInFrames` is shorter:
+
+```tsx
+// Play the footage from second 2 to second 5
+<Video trimBefore={2 * fps} trimAfter={5 * fps} {/* ... */} />
+
+// Children see frames `10 * fps` through `15 * fps - 1`
+<Sequence trimBefore={10 * fps} trimAfter={15 * fps} {/* ... */} />
+```
+
+### `loop`
+
+Repeats the range between `trimBefore` and `trimAfter`. `durationInFrames` sets the total length. `<Video>` and `<Audio>` may omit `trimAfter` and loop the whole file; other layers need `trimAfter` because they have no intrinsic end:
+
+```tsx
+<Video loop durationInFrames={20 * fps} {/* ... */} />
+<Sequence trimAfter={2 * fps} durationInFrames={20 * fps} loop {/* ... */} />
+```
+
+`<Img>`, `<CanvasImage>`, `<Solid>` and shapes do not support `loop` because their output does not change over time.
+
 ### Fallback
 
 If a component does not support these props, wrap it in`<Sequence>` from `remotion`, which has them.
@@ -226,6 +259,10 @@ See [multi-scene-video.md](multi-scene-video.md) if planning to make a video wit
 
 When a scene or group of layers deserves its own editable timeline, follow [connected-compositions.md](connected-compositions.md). Prefer this structure for substantial scenes in a multi-scene video.
 
+For a Studio request such as `Pre-compose Ambient glow (src/BarChart.tsx:134)`, find the selected sequence markup at the given location. Make a connected composition, following [connected-compositions.md](connected-compositions.md): extract the markup into a named component, render one direct instance of it as the only child of a `<Sequence>`, `<Series.Sequence>`, or `<TransitionSeries.Sequence>`, and register that same component reference with a unique `<Composition>` in the root. If the selected node is already a sequence, keep its props and extract its children. The registration needs dimensions, fps, duration, and `defaultProps` equivalent to its parent use. A component extraction without a registered composition does not complete a pre-compose request.
+
+The extracted component may return a fragment; do not add a DOM wrapper. Preserve sibling order, props, keys, conditional rendering, dimensions, appearance, and timing. Trace values used by the selected markup: move their derivations only when the same scope and lifecycle are preserved, otherwise pass them as props. In particular, moving `useCurrentFrame()` or `useVideoConfig()` across a sequence boundary can change its result; pass the parent value when needed. If the selection or a behavior-preserving connected composition is unclear, ask for clarification instead of guessing.
+
 ## Voiceover
 
 See [voiceover.md](voiceover.md) for adding an AI-generated voiceover to Remotion compositions using ElevenLabs TTS.
@@ -237,10 +274,6 @@ See [embedding-videos.md](embedding-videos.md) for advanced knowledge about embe
 ## Embedding Audio
 
 See [audio.md](audio.md) for advanced audio features like trimming, volume, speed, pitch.
-
-## Video editing
-
-See [video-editing.md](video-editing.md) for structuring editable video timelines in Remotion Studio.
 
 ## Cropping
 
@@ -333,9 +366,9 @@ When needing to detect and trim silent segments from video or audio files, load 
 
 See [calculate-metadata.md](calculate-metadata.md) for dynamically set composition duration, dimensions, and props.
 
-## Advanced compositions
+## Compositions and stills
 
-See [compositions.md](compositions.md) for how to define stills, folders, default props and for how to nest compositions. For Studio navigation into a scene's own timeline, use [connected compositions](connected-compositions.md).
+Before registering `<Composition>` or `<Still>` elements, read [compositions.md](compositions.md) for source-editable registrations, folders, default props and nesting. For Studio navigation into a scene's own timeline, use [connected compositions](connected-compositions.md).
 
 ## Advanced sequencing
 
