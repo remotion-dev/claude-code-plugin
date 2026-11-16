@@ -3,7 +3,7 @@
 	"name": "remotion",
 	"displayName": "Remotion",
 	"icon": "./.claude-plugin/icon.png",
-	"version": "4.0.545",
+	"version": "4.0.546",
 	"description": "Remotion video creation skills — best practices, animations, audio, captions, 3D, and more for building programmatic videos with React.",
 	"author": {
 		"name": "Remotion",
