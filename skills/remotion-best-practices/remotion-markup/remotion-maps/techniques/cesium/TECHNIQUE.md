@@ -35,7 +35,7 @@ requests.
 
 ## Build the flight
 
-1. Copy `assets/CesiumFlythrough.tsx`, a path JSON and `assets/example-Root.tsx` into the Remotion
+1. Copy [`assets/CesiumFlythrough.tsx` source](assets/CesiumFlythrough.tsx.md), a path JSON and [`assets/example-Root.tsx` source](assets/example-Root.tsx.md) into the Remotion
    project, or import the component directly.
 2. Supply the camera route as `[longitude, latitude][]`. Use only meaningful control points; do not hand-author dozens of tiny corrections.
 3. Leave `pathSmoothingPasses={3}` initially. The component applies repeated Chaikin corner cutting, turning straight-then-corner input into a continuous swerve. Increase to `4` for a softer route or reduce to `2` when the camera must follow a tight corridor.
@@ -61,7 +61,7 @@ Walk the smoothed curve by arc length for constant ground speed. Aim at a real p
 the curve rather than its next vertex. Derive roll from the change in look-ahead bearing so the
 camera banks into a turn instead of twitching left and right.
 
-For landscape routes, `scripts/prep-cesium-path.mjs` also clips, resamples, smooths and dampens a
+For landscape routes, [`scripts/prep-cesium-path.mjs` source](scripts/prep-cesium-path.mjs.md) also clips, resamples, smooths and dampens a
 GeoJSON centerline before the component applies its final curve smoothing.
 
 
@@ -80,10 +80,10 @@ GeoJSON centerline before the component applies its final curve smoothing.
 
 ## Files
 
-- `assets/CesiumFlythrough.tsx` — reusable two-mode component.
-- `assets/flight-path.ts` — dependency-free Chaikin route smoothing.
-- `assets/example-Root.tsx` — landscape and city compositions.
+- [`assets/CesiumFlythrough.tsx` source](assets/CesiumFlythrough.tsx.md) — reusable two-mode component.
+- [`assets/flight-path.ts` source](assets/flight-path.ts.md) — dependency-free Chaikin route smoothing.
+- [`assets/example-Root.tsx` source](assets/example-Root.tsx.md) — landscape and city compositions.
 - `assets/cesium-path.json` — sample landscape route.
 - `assets/city-path.json` — sample city route.
-- `assets/sample-river.geojson` — sample path-preparation input.
-- `scripts/prep-cesium-path.mjs` — dependency-free landscape route preparation.
+- `assets/sample-river.json` — sample path-preparation input.
+- [`scripts/prep-cesium-path.mjs` source](scripts/prep-cesium-path.mjs.md) — dependency-free landscape route preparation.

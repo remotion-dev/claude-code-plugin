@@ -48,7 +48,7 @@ Four properties matter, in order:
    the single swerve-amplitude knob.
 4. **Enough length** — `PATHKM ≥ TRAVEL_KM + 2·LOOK_AHEAD_KM` so the look-ahead aim never clamps.
 
-`../scripts/prep-cesium-path.mjs` does: clip a window of the source centerline → resample to even
+[`../scripts/prep-cesium-path.mjs` source](../scripts/prep-cesium-path.mjs.md) does: clip a window of the source centerline → resample to even
 arc-length spacing (0.1 km) → moving-average smooth (±2.8 km window, 2 passes) → dampen toward the chord
 (`DAMP=0.45`). Validate with the heading-delta probe it prints — deltas should be small and change
 _gradually_ (water-wars: `3,0,-1,-3,-4,1,7,9,5,-5,-12,-7,…`). Big jumps = corners = bad.
@@ -110,7 +110,7 @@ const setCamera = (C, viewer, prog) => {
 
 ## 5. The complete component
 
-The full, runnable component is `../assets/CesiumFlythrough.tsx` — read it directly. Its shape:
+The full, runnable component is [`../assets/CesiumFlythrough.tsx` source](../assets/CesiumFlythrough.tsx.md) — read it directly. Its shape:
 
 - `loadCesium()` — inject `CESIUM_BASE_URL` + the CDN `Cesium.js`, resolve when loaded.
 - init effect — build the Viewer (§1), `setCamera(…, 0)`, `await settle(viewer)`, `continueRender`.

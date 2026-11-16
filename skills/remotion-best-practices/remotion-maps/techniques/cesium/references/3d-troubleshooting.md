@@ -23,7 +23,7 @@ loop with these four non-negotiables:
 
 The standalone `flythrough.html` / `render.mjs` / `probe.mjs` from the original spike are kept only as the
 record of this dead-end. The canonical render path is the Remotion component
-(`../assets/CesiumFlythrough.tsx`).
+([`../assets/CesiumFlythrough.tsx` source](../assets/CesiumFlythrough.tsx.md)).
 
 ## Symptom → fix
 
